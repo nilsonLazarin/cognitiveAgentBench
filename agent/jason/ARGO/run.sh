@@ -1,6 +1,6 @@
 #!/bin/bash
 LOG=monitoramento.log
-NUM_REPETICOES=2
+NUM_REPETICOES=10
 
 # O atop INICIA antes de tudo
 atop -M 5 1000 > $LOG &
