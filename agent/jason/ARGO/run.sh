@@ -8,7 +8,7 @@ pid=$!
 
 for i in $(seq 1 $NUM_REPETICOES); do
         echo "Iniciando repetição $i..."
-#        jason cognitiveAgentBenchWithJasonARGO.mas2j
+        jason cognitiveAgentBenchWithJasonARGO.mas2j
         sleep 7
 done
 
