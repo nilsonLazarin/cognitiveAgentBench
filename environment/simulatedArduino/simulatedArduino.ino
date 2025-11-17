@@ -45,6 +45,7 @@ void setup() {
   lcd.begin(16, 2);
   writeInLCD("Press any key","(A0)");
   javino.perceive(getExogenousPerceptions);
+   javino.act["startBench"]  = startBench;
   javino.start(9600);
 }
  

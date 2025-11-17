@@ -24,6 +24,13 @@ bigPrime(99999997).
     .print("PPM = ",PPM);
     .stopMAS.
 
++port(ttyUSB0,on): not running <-
+    .print("Iniciando....");
+    .argo.act(startBench);
+.
+
+
+
 +bobPublicKey(K) <- .print(K).
 
 +!calc(PrivateKey) <-
