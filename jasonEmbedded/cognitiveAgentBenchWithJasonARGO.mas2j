@@ -15,7 +15,7 @@ MAS cognitiveAgentBenchWithJasonARGO {
     agents: 
        // bob agentArchClass jason.Argo;
         alice;
-        charlie;
+       // charlie;
 
     aslSourcePath: "src/agt";
 }
