@@ -9,7 +9,7 @@ for i in $(seq 1 $NUM); do
         echo "Starting round  $i..."
         atop -M 5 1000 > $FOLDER/$LOG$i &
         pid=$!
-        jacamo cognitiveAgentBenchWithJaCaMoARGO.jcm
+        jacamo cognitiveAgentBenchWithJaCaMoARGO.jcm  >> $FOLDER/run.log 2>>$FOLDER/run.log
         kill $pid
         # O atop ENCERRA só depois que tudo acabou
         echo 'Report in CSV'
