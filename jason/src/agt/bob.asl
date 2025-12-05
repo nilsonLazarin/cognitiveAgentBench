@@ -4,10 +4,10 @@
     .argo.percepts(open);
 .
 
-//+publicKey(N,V) <- .argo.percepts(open).
++publicKey(N,V) <- .argo.percepts(open).
 
 +number(R) <-
-    //.argo.percepts(close);
+    .argo.percepts(close);
     .send(alice,achieve,calc(R)).
 
 +result(PPM) <-
@@ -17,7 +17,7 @@
     .random(R);
     .wait(5000*R);
     .send(alice,achieve,calcPPM(PPM));
-    .wait(5000*R);
+    .wait(2000*R);
     .broadcast(untell,busy(Agent));
 .
 
