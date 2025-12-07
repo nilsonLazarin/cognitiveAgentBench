@@ -57,7 +57,7 @@ devices(0).
 
 +ready(Agent)[source(A)]: waitting <- .random(R); .wait(5000*R); ?agts(C); -+agts(C+1).
 
-+ready(Agent)[source(A)]: not waitting <- +waitting; ?agts(C); -+agts(C+1); !stopTest.
++ready(Agent)[source(A)]: not waitting <- +waitting; .random(R); .wait(5000*R); ?agts(C); -+agts(C+1); !stopTest.
 
 +!stopTest: not ready(Agent)[source(A)] <- 
     ?ppm(A,V);
