@@ -1,6 +1,7 @@
 /* Plans */
 +!start(Port) <-
     .argo.port(Port);
+    +myPort(Port);
     .argo.percepts(open);
 .
 
@@ -18,19 +19,22 @@
     .wait(5000*R);
     .send(alice,achieve,calcPPM(PPM));
     .wait(2000*R);
-    .broadcast(untell,busy(Agent));
+    .broadcast(untell,ready(Agent));
 .
 
 +port(P,on) <-
-    .print("Starting.... port=",P);
+    .print("Connected.... port=",P);
     .my_name(Agent);
-    .broadcast(tell,busy(Agent));
-    .argo.act(startBench);
+    .broadcast(tell,ready(Agent));
 .
+
++!startBench <- .argo.act(startBench); .print("Starting...").
 
 +port(P,off) <-
     .argo.percepts(close);
-    .print("Skipping....",P);
+    .random(R); .wait(2000*R);
+    .print("Tryng again....",P);
+    !start(Port);
 .
 
 +port(P,timeout) <-
