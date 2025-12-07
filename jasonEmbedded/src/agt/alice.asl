@@ -14,6 +14,8 @@ ppm(0,0).
     .create_agent(b5,"bob.asl", [agentArchClass("jason.Argo")]);
     .create_agent(b6,"bob.asl", [agentArchClass("jason.Argo")]);
     .create_agent(b7,"bob.asl", [agentArchClass("jason.Argo")]);
+    .wait(2000);
+    .print("Starting");
     .send(b0,achieve,start(ttyUSB0));
     .send(b1,achieve,start(ttyUSB1));
     .send(b2,achieve,start(ttyUSB2));

@@ -30,5 +30,10 @@
 
 +port(P,off) <-
     .argo.percepts(close);
-    .print("Skipping....");
+    .print("Skipping....",P);
+.
+
++port(P,timeout) <-
+    .argo.percepts(close);
+    .print("Timeout....",P);
 .
