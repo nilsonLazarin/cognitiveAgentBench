@@ -17,7 +17,7 @@ devices(0).
     !newDevice(b6,ttyUSB6);
     !newDevice(b7,ttyUSB7);/**/
     ?devices(A);
-    .print("Waiting for",A," agents...");
+    .print("Waiting for ",A," agents...");
     .wait(agts(A));
     .print("All agents ready...");
     .broadcast(achieve,startBench);
@@ -55,9 +55,9 @@ devices(0).
 
 +agts(N) <- .print("Agts ready=",N).
 
-+ready(Agent)[source(A)]: waitting <- .random(R); .wait(5000*R); ?agts(C); -+agts(C+1).
++ready(Agent)[source(A)]: waitting <- ?agts(C); -+agts(C+1).
 
-+ready(Agent)[source(A)]: not waitting <- +waitting; .random(R); .wait(5000*R); ?agts(C); -+agts(C+1); !stopTest.
++ready(Agent)[source(A)]: not waitting <- +waitting; ?agts(C); -+agts(C+1); !stopTest.
 
 +!stopTest: not ready(Agent)[source(A)] <- 
     ?ppm(A,V);
