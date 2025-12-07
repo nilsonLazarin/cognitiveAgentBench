@@ -51,9 +51,9 @@ agts(0).
     !powmod(Base, Exp1, Mod, T);
     Res = (Base * T) mod Mod.
 
-+ready(Agent)[source(A)]: waitting <- ?agts(C); -+agts(C+1).
++ready(Agent)[source(A)]: waitting <- .random(R); .wait(2000*R); ?agts(C); -+agts(C+1).
 
-+ready(Agent)[source(A)]: not waitting <- +waitting; ?agts(C); -+agts(C+1); !stopTest.
++ready(Agent)[source(A)]: not waitting <- +waitting; .random(R); .wait(2000*R); ?agts(C); -+agts(C+1); !stopTest.
 
 +!stopTest: not ready(Agent)[source(A)] <- 
     ?ppm(A,V);
