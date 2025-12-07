@@ -38,8 +38,3 @@
     .print("Tryng again....",Port);
     !connect(Port);
 .
-
-+port(P,timeout) <-
-    .argo.percepts(close);
-    .print("Timeout....",P);
-.
