@@ -27,7 +27,6 @@
 +port(P,on) <-
     .print("Connected.... port=",P);
     .my_name(Agent);
-    .random(R); .wait(7000*R);
     .broadcast(tell,ready(Agent));
 .
 

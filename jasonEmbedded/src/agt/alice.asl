@@ -2,7 +2,6 @@ littePrime(999989).
 bigPrime(99999997).
 count(0).
 ppm(0,0).
-agts(0).
 devices(0).
 
 !start.
@@ -18,7 +17,7 @@ devices(0).
     !newDevice(b7,ttyUSB7);/**/
     ?devices(A);
     .print("Waiting for ",A," agents...");
-    .wait(agts(A));
+    .wait(.count(ready(_),A));
     .print("All agents ready...");
     .broadcast(achieve,startBench);
     .print("Starting Benchmarking..."); 
@@ -53,11 +52,7 @@ devices(0).
     !powmod(Base, Exp1, Mod, T);
     Res = (Base * T) mod Mod.
 
-+agts(N) <- .print("Agts ready=",N).
-
-+ready(Agent)[source(A)]: waitting <- ?agts(C); -+agts(C+1).
-
-+ready(Agent)[source(A)]: not waitting <- +waitting; ?agts(C); -+agts(C+1); !stopTest.
++ready(Agent)[source(A)]: not waitting <- +waitting; !stopTest.
 
 +!stopTest: not ready(Agent)[source(A)] <- 
     ?ppm(A,V);
