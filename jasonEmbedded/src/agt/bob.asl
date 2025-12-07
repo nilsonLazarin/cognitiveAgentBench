@@ -1,9 +1,11 @@
 /* Plans */
-+!start(Port) <-
++!connect(Port) <-
     .argo.port(Port);
     +myPort(Port);
     .argo.percepts(open);
 .
+
++!startBench <- .argo.act(startBench); .print("Starting...").
 
 +publicKey(N,V) <- .argo.percepts(open).
 
@@ -28,13 +30,13 @@
     .broadcast(tell,ready(Agent));
 .
 
-+!startBench <- .argo.act(startBench); .print("Starting...").
-
 +port(P,off) <-
     .argo.percepts(close);
-    .random(R); .wait(2000*R);
-    .print("Tryng again....",P);
-    !start(Port);
+    .abolish(port(_,_));
+    .random(R); .wait(5000);
+    ?myPort(Port);
+    .print("Tryng again....",Port);
+    !connect(Port);
 .
 
 +port(P,timeout) <-

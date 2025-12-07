@@ -3,30 +3,32 @@ bigPrime(99999997).
 count(0).
 ppm(0,0).
 agts(0).
+devices(0).
 
 !start.
 
 +!start <-
-    .create_agent(b0,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b0,achieve,start(ttyUSB0));
-    .create_agent(b1,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b1,achieve,start(ttyUSB1));
-    /*.create_agent(b2,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b2,achieve,start(ttyUSB2));
-    .create_agent(b3,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b3,achieve,start(ttyUSB3));
-    .create_agent(b4,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b4,achieve,start(ttyUSB4));
-    .create_agent(b5,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b5,achieve,start(ttyUSB5));
-    .create_agent(b6,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b6,achieve,start(ttyUSB6));
-    .create_agent(b7,"bob.asl", [agentArchClass("jason.Argo")]);
-    .send(b7,achieve,start(ttyUSB7));*/
-    .print("Waiting agents...");       
-    .wait(agts(2));
+    !newDevice(b0,ttyUSB0);
+    !newDevice(b1,ttyUSB1);
+    /*!newDevice(b2,ttyUSB2);
+    !newDevice(b3,ttyUSB3);
+    !newDevice(b4,ttyUSB4);
+    !newDevice(b5,ttyUSB5);
+    !newDevice(b6,ttyUSB6);
+    !newDevice(b7,ttyUSB7);/**/
+    ?devices(A);
+    .print("Waiting for",A," agents...");
+    .wait(agts(A));
+    .print("All agents ready...");
     .broadcast(achieve,startBench);
     .print("Starting Benchmarking..."); 
+.
+
++!newDevice(Name,Port) <-
+    .create_agent(Name,"bob.asl", [agentArchClass("jason.Argo")]);
+    .send(Name,achieve,connect(Port));
+    ?devices(N);
+    -+devices(N+1);
 .
 
 +!calc(PrivateKey)[source(Origem)]: count(C) <-
@@ -51,9 +53,11 @@ agts(0).
     !powmod(Base, Exp1, Mod, T);
     Res = (Base * T) mod Mod.
 
-+ready(Agent)[source(A)]: waitting <- .random(R); .wait(2000*R); ?agts(C); -+agts(C+1).
++agts(N) <- .print("Agts ready=",N).
 
-+ready(Agent)[source(A)]: not waitting <- +waitting; .random(R); .wait(2000*R); ?agts(C); -+agts(C+1); !stopTest.
++ready(Agent)[source(A)]: waitting <- .random(R); .wait(5000*R); ?agts(C); -+agts(C+1).
+
++ready(Agent)[source(A)]: not waitting <- +waitting; ?agts(C); -+agts(C+1); !stopTest.
 
 +!stopTest: not ready(Agent)[source(A)] <- 
     ?ppm(A,V);
