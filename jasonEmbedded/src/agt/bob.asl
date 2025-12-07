@@ -24,7 +24,8 @@
     .broadcast(untell,ready(Agent));
 .
 
-+port(P,on) <-
++port(P,on): not running <-
+    +running;
     .print("Connected.... port=",P);
     .my_name(Agent);
     .broadcast(tell,ready(Agent));
