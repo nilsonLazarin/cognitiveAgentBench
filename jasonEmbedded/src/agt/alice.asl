@@ -54,11 +54,7 @@ devices(0).
 
 +ready(Agent)[source(A)]: not waitting <- +waitting; !stopTest.
 
-+!stopTest: not ready(Agent)[source(A)] <- 
-    ?ppm(A,V);
-    .print(" PPM = ",A,"/",V," = ",V/A);
-    .stopMAS;
-.
++!stopTest: not ready(Agent)[source(A)] <- .stopMAS.
 -!stopTest <- .wait(1000); !stopTest.
 
 +!calcPPM(PPM) <-
