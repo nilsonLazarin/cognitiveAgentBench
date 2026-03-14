@@ -7,7 +7,7 @@
 
 +!startBench <- .argo.act(startBench); .print("Starting...").
 
-+publicKey(N,V) <- .argo.percepts(open).
++publicKey(N,V) <-  .argo.percepts(open).
 
 +number(R) <-
     .argo.percepts(close);

@@ -7,9 +7,9 @@ devices(0).
 !start.
 
 +!start <-
-    !newDevice(b0,ttyUSB0);
-    !newDevice(b1,ttyUSB1);
-    /*!newDevice(b2,ttyUSB2);
+    !newDevice(bob,ttyUSB0);
+    /*!newDevice(b1,ttyUSB1);
+    !newDevice(b2,ttyUSB2);
     !newDevice(b3,ttyUSB3);
     !newDevice(b4,ttyUSB4);
     !newDevice(b5,ttyUSB5);
@@ -24,19 +24,20 @@ devices(0).
 .
 
 +!newDevice(Name,Port) <-
-    .create_agent(Name,"bob.asl", [agentArchClass("jason.Argo")]);
+    //.create_agent(Name,"bob.asl", [agentArchClass("jason.Argo")]);
     .send(Name,achieve,connect(Port));
     ?devices(N);
     -+devices(N+1);
 .
 
-+!calc(PrivateKey)[source(Origem)]: count(C) <-
++!calc(Seed)[source(Origem)]: count(C) <-
     -+count(C+1);
-    .number(PrivateKey);
+    .number(Seed);
     ?littePrime(B);           
-    ?bigPrime(N);             
-    !powmod(B, PrivateKey+C, N, PublicKey);
-    .send(Origem,tell,publicKey(C+1,PublicKey));
+    ?bigPrime(N);            
+    !powmod(B, Seed, N, PublicKey);
+    .send(Origem,tell,publicKey(Seed,PublicKey));
+    .print("Agent: ",Origem," Seed: ",Seed," Key: ",PublicKey); 
 .
 
 +!powmod(Base, Exp, Mod, Res) : Exp == 0 <-
